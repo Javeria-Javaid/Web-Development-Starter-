@@ -1,0 +1,19 @@
+body{
+    background: linear-gradient(to right, #b1a6c8, #ede9fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.main_container{
+    background-color: #ffffff;
+    width: 80%;
+
+}
+.sign-in-container{
+    width: 35%;
+    background-color:#ffffff ;
+
+}
