@@ -1,4 +1,4 @@
-body{
+body {
     background: linear-gradient(to right, #b1a6c8, #ede9fe);
     display: flex;
     justify-content: center;
@@ -7,70 +7,178 @@ body{
     margin: 0;
     font-family: 'Nunito Sans', sans-serif;
 }
-.main_container{
+
+.main_container {
     background-color: #ffffff;
     width: 52%;
-    display: flex;
-    border-radius:65px ;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
     height: 500px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 65px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.6s ease-in-out;
 }
-.sign-in-container{
-    width: 55%;
-    background-color:#ffffff ;
+
+/* ---------------------------- SIGN IN ---------------------------- */
+.sign-in-container {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
     text-align: center;
     padding: 20px;
     border-top-left-radius: 160px;
     border-bottom-left-radius: 75px;
-
+    left: 0;
+    z-index: 2;
+    transition: all 0.6s ease-in-out;
 }
-.sign-in-container h1{
+
+.sign-in-container h1 {
     margin-top: 70px;
 }
-.sign-in-container input{
+
+.sign-in-container input {
     border: 1px solid #ede9fe;
     border-radius: 10px;
     outline: none;
     background-color: transparent;
-    padding: 20px 15px 20px 15px;
+    padding: 20px 15px;
     width: 300px;
     margin: 12px;
 }
+
 .sign-in-btn {
     background: #49137c;
     color: white;
-    padding: 10px 15px 10px 15px;
+    padding: 10px 15px;
     width: 150px;
     border-radius: 10px;
     margin: 25px;
     cursor: pointer;
-
 }
-.right-container{
-    background-color:#49137c ;
-    width: 45%;
+
+/* ---------------------------- SIGN UP ---------------------------- */
+.sign-up-container {
+    position: absolute;
+    width: 43%;
+    height: 100%;
     text-align: center;
-    color: white;
-    padding: 35px;
-    border-top-left-radius: 160px;
-    border-bottom-left-radius: 75px;
+    padding: 20px;
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-up-container input {
+    border: 1px solid #ede9fe;
+    border-radius: 10px;
+    outline: none;
+    background-color: transparent;
+    padding: 20px 15px;
+    width: 300px;
+    margin: 12px;
+}
+
+/* Show sign-up when active */
+.main_container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: 1;
+}
+
+.main_container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 2;
+}
+
+/* ---------------------------- OVERLAY ---------------------------- */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+
+    /* Initial border radius (right side) */
     border-top-right-radius: 55px;
     border-bottom-right-radius: 55px;
+    border-top-left-radius: 160px;
+    border-bottom-left-radius: 755px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: #49137c;
 }
-.right-container h1{
-    margin-top: 150px;
+
+/* When active, invert the border radius */
+.main_container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+    border-top-left-radius: 55px;
+    border-bottom-left-radius: 55px;
+    border-top-right-radius: 160px;
+    border-bottom-right-radius: 75px;
 }
-.right-container p{
-    line-height: 20px;
+
+.overlay {
+    background-color: #49137c;
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.6s ease-in-out;
 }
-.sign-up-btn{
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    text-align: center;
+    width: 40%;
+    height: 100%;
+}
+
+.overlay-left {
+    left: 0;
+}
+
+.overlay-right {
+    right: 0;
+}
+
+/* Move overlay when active */
+.main_container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.main_container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+/* ---------------------------- BUTTONS ---------------------------- */
+.sign-up-btn,
+.ghost {
     background: #49137c;
     color: white;
-    padding: 10px 15px 10px 15px;
+    padding: 10px 15px;
     width: 150px;
     border-radius: 10px;
     margin: 25px;
     border: 1px solid white;
     cursor: pointer;
+}
+
+.ghost {
+    background: transparent;
 }

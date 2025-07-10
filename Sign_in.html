@@ -3,37 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign_in</title>
-  <link rel="stylesheet" href="Sign_in.css">
+    <link rel="stylesheet" href="Sign_in.css">
 </head>
+
 <body>
 <!-- Main form container starts here -->
-<div class="main_container">
-  <!-- sign in form starts here -->
+<div class="main_container" id="container">
 
-  <div class="sign-in-container">
-    <h1>Sign In</h1>
-    <div class="google-signIn-container"></div>
-    <div class="Icon-container"></div>
-    <span>Or use your Email password </span><br>
-    <form>
-  <input type="email" placeholder="Email Address"><br>
-  <input type="password" placeholder="Password">
-</form>
-    <div class="forgot-password-container">
-      <a>Forget Your Password ?</a>
+    <!-- Sign In Form -->
+    <div class="sign-in-container">
+        <h1>Sign In</h1>
+        <div class="google-signIn-container"></div>
+        <div class="Icon-container"></div>
+        <span>Or use your Email password</span><br>
+        <form>
+            <input type="email" placeholder="Email Address"><br>
+            <input type="password" placeholder="Password">
+        </form>
+        <div class="forgot-password-container">
+            <a href="#">Forget Your Password?</a>
+        </div>
+        <button class="sign-in-btn" id="signInBtn">SIGN IN</button>    </div>
+
+    <!-- Sign Up Form -->
+    <div class="sign-up-container">
+        <h1>Create Account</h1>
+        <div class="google-signIn-container"></div>
+        <div class="Icon-container"></div>
+        <span>Or use your email for registration</span><br>
+        <form>
+            <input type="text" placeholder="Name"><br>
+            <input type="email" placeholder="Email Address"><br>
+            <input type="password" placeholder="Password">
+        </form>
+        <button class="sign-up-btn" id="signUpBtn">SIGN UP</button>
     </div>
-    <button class="sign-in-btn">SIGN IN</button>
-  </div>
-  <!-- sign in form ends here -->
-<!-- second container -->
-  <div class="right-container">
-    <h1>Hello, Friend!</h1>
-    <p>Register with your personal details to use all of site features</p>
-  <button class="sign-up-btn">SIGN UP</button>
 
-  </div>
+    <!-- Overlay Section -->
+    <div class="overlay-container">
+        <div class="overlay">
 
-</div>
-<!-- Main form container ends here -->
+            <!-- Left Panel (Switch to Sign In) -->
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your info</p>
+                <button class="ghost" id="goToSignIn">SIGN IN</button>
+            </div>
+
+            <!-- Right Panel (Switch to Sign Up) -->
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Register with your personal details to use all site features</p>
+                <button class="ghost" id="signUp">SIGN UP</button>
+            </div>
+
+        </div> <!-- overlay ends -->
+    </div> <!-- overlay-container ends -->
+
+</div> <!-- main_container ends -->
+
+<script>
+    const signUpButton = document.getElementById("signUp");
+    const signInButton = document.getElementById("signInBtn");
+    const goToSignInButton = document.getElementById("goToSignIn");
+    const container = document.getElementById("container");
+
+    signUpButton.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent form submission if this is in a form
+        container.classList.remove("right-panel-active");
+    });
+
+    goToSignInButton.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
 </body>
 </html>
