@@ -5,17 +5,23 @@ body{
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
 }
 .main_container{
     background-color: #ffffff;
-    width: 80%;
+    width: 50%;
+    display: flex;
+    border-radius:65px ;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 
 }
 .sign-in-container{
-    width: 35%;
+    width: 55%;
     background-color:#ffffff ;
     text-align: center;
+    padding: 20px;
+    border-top-left-radius: 160px;
+    border-bottom-left-radius: 75px;
 
 }
 .sign-in-container input{
@@ -34,4 +40,31 @@ body{
     width: 150px;
     border-radius: 10px;
     margin: 25px;
+}
+.right-container{
+    background-color:#49137c ;
+    width: 45%;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    border-top-left-radius: 160px;
+    border-bottom-left-radius: 75px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.right-container h1{
+    margin-top: 95px;
+}
+.right-container p{
+    line-height: 20px;
+}
+.sign-up-btn{
+    background: #49137c;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    width: 150px;
+    border-radius: 10px;
+    margin: 25px;
+    border: 1px solid white;
 }
