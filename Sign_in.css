@@ -15,5 +15,23 @@ body{
 .sign-in-container{
     width: 35%;
     background-color:#ffffff ;
+    text-align: center;
 
+}
+.sign-in-container input{
+    border: 1px solid #ede9fe;
+    border-radius: 10px;
+    outline: none;
+    background-color: transparent;
+    padding: 20px 15px 20px 15px;
+    width: 300px;
+    margin: 12px;
+}
+.sign-in-btn {
+    background: #49137c;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    width: 150px;
+    border-radius: 10px;
+    margin: 25px;
 }
