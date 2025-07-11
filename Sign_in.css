@@ -71,7 +71,9 @@ body {
     z-index: 1;
     transition: all 0.6s ease-in-out;
 }
-
+.sign-up-container h1{
+    margin-top: 45px;
+}
 .sign-up-container input {
     border: 1px solid #ede9fe;
     border-radius: 10px;
@@ -121,7 +123,9 @@ body {
     border-top-left-radius: 55px;
     border-bottom-left-radius: 55px;
     border-top-right-radius: 160px;
-    border-bottom-right-radius: 75px;
+    border-bottom-right-radius: 755px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
 }
 
 .overlay {
