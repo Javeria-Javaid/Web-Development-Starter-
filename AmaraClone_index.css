@@ -100,7 +100,7 @@ header{
 /* ===== Animations ===== */
 @keyframes typing {
     from { width: 0 }
-    to { width: 100% }
+    to { width: 17% }
 }
 
 @keyframes blink-caret {
