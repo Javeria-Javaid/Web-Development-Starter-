@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amara Jewels - Collections</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --black: #000000;
+            --dark-bg: #0a0a0a;
+            --text-light: #f5f5f5;
+            --text-gray: #cccccc;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--black);
+            color: var(--text-light);
+        }
+
+        /* Header Styles (consistent with other pages) */
+        header {
+            width: 100%;
+            display: flex;
+            padding: 25px 40px;
+            background-color: var(--black);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            width: 20%;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            width: 80%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu li a:hover, .menu li a.active {
+            color: var(--gold);
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        /* Collections Section */
+        .collections-section {
+            padding: 150px 40px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .collection-card {
+            position: relative;
+            overflow: hidden;
+            height: 450px;
+            border-radius: 5px;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .collection-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-card:hover .collection-image {
+            transform: scale(1.05);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 30px;
+            color: white;
+        }
+
+        .collection-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .collection-description {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .view-collection {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .view-collection:hover {
+            background: #c2a031;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .collections-section {
+                padding: 120px 20px 60px;
+            }
+
+            .section-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-card {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="Amara Jewels Logo">
+    </div>
+    <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="why-web.html">Why Choose Us</a></li>
+        <li><a href="collections.html" class="active">Collections</a></li>
+        <li><a href="clients.html">Clients</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</header>
+
+<section class="collections-section">
+    <div class="section-header">
+        <h1>Our Collections</h1>
+        <p>Discover Amara's exquisite jewelry collections, each piece meticulously crafted to embody timeless elegance and unparalleled quality.</p>
+    </div>
+
+    <div class="collections-grid">
+        <!-- Collection 1 -->
+        <div class="collection-card">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e" alt="Gemstone Collection" class="collection-image">
+            <div class="collection-overlay">
+                <h3 class="collection-title">Gemstone Collection</h3>
+                <p class="collection-description">Natural gemstones set in sterling silver and gold, showcasing nature's beauty in every piece.</p>
+                <a href="#" class="view-collection">View Collection</a>
+            </div>
+        </div>
+
+        <!-- Collection 2 -->
+        <div class="collection-card">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f" alt="Bridal Collection" class="collection-image">
+            <div class="collection-overlay">
+                <h3 class="collection-title">Bridal Collection</h3>
+                <p class="collection-description">Elegant designs for the modern bride, featuring diamonds and precious stones.</p>
+                <a href="#" class="view-collection">View Collection</a>
+            </div>
+        </div>
+
+        <!-- Collection 3 -->
+        <div class="collection-card">
+            <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a" alt="Heritage Collection" class="collection-image">
+            <div class="collection-overlay">
+                <h3 class="collection-title">Heritage Collection</h3>
+                <p class="collection-description">Traditional Jaipur craftsmanship meets contemporary design in these statement pieces.</p>
+                <a href="#" class="view-collection">View Collection</a>
+            </div>
+        </div>
+
+        <!-- Collection 4 -->
+        <div class="collection-card">
+            <img src="https://images.unsplash.com/photo-1603974372035-96a3c13d0a0e" alt="Minimalist Collection" class="collection-image">
+            <div class="collection-overlay">
+                <h3 class="collection-title">Minimalist Collection</h3>
+                <p class="collection-description">Subtle elegance with clean lines and delicate details for everyday wear.</p>
+                <a href="#" class="view-collection">View Collection</a>
+            </div>
+        </div>
+
+        <!-- Collection 5 -->
+        <div class="collection-card">
+            <img src="https://images.unsplash.com/photo-1611591437281-4608be122683" alt="Statement Collection" class="collection-image">
+            <div class="collection-overlay">
+                <h3 class="collection-title">Statement Collection</h3>
+                <p class="collection-description">Bold designs for those who want to make an impression.</p>
+                <a href="#" class="view-collection">View Collection</a>
+            </div>
+        </div>
+
+        <!-- Collection 6 -->
+        <div class="collection-card">
+            <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a" alt="Men's Collection" class="collection-image">
+            <div class="collection-overlay">
+                <h3 class="collection-title">Men's Collection</h3>
+                <p class="collection-description">Sophisticated jewelry designed for the modern gentleman.</p>
+                <a href="#" class="view-collection">View Collection</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer would be included here from previous implementation -->
+</body>
+</html>
