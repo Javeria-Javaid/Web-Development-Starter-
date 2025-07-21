@@ -68,12 +68,13 @@ header{
     width: 100%;
     margin: 0 auto;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .section-header{
     text-align: center;
     width: 50%;
-    align-items: center;
-    justify-items: center;
+
 }
 .section-header h1{
     color:#d4af37 ;
