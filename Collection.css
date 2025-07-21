@@ -60,116 +60,17 @@ header{
     --text-gray: #cccccc;
 }
 
-/* page specific style */
-.about-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 40px;
-    position: relative;
-}
 
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
-}
 
-.section-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
 
-.section-header::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: var(--gold);
-    margin: 0 auto;
-}
 
-.company-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--gold);
-    text-align: center;
-    margin-bottom: 40px;
-    letter-spacing: 2px;
-    font-weight: 700;
-}
 
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-}
 
-.about-text {
-    font-size: 1.1rem;
-    color: var(--text-gray);
-    text-align: justify;
-    hyphens: auto;
-}
 
-.about-text p {
-    margin-bottom: 25px;
-}
 
-.highlight {
-    color: var(--gold);
-    font-weight: 600;
-}
 
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
 
-.product-category {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 25px;
-    border-left: 3px solid var(--gold);
-}
 
-.product-category h3 {
-    color: var(--gold);
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-}
-
-.product-category ul {
-    list-style-position: inside;
-    color: var(--text-gray);
-}
-
-.product-category li {
-    margin-bottom: 8px;
-}
-
-@media (max-width: 768px) {
-    .about-section {
-        padding: 60px 20px;
-    }
-
-    .section-header h1 {
-        font-size: 2.5rem;
-    }
-
-    .company-name {
-        font-size: 2rem;
-    }
-
-    .about-text {
-        font-size: 1rem;
-    }
-}
-/* footer styling */
 .luxury-footer {
     background: rgba(0, 0, 0, 0.8);
     padding: 60px 40px 30px;
