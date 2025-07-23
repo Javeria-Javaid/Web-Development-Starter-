@@ -65,14 +65,14 @@ header{
 .testimonial-section{
     display: grid;
     justify-content: center;
-
+    margin: 50px 0 50px 0;
 
 }
 
 .testimonial-section h1{
     text-align: center;
     color:  #d4af37;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-family: 'Playfair Display', serif;
 
     position: relative; /* ← Essential for absolute positioning of :after */
@@ -101,6 +101,52 @@ header{
     justify-content: center;
     gap: 10px;
     margin-top: 30px;
+    margin-bottom: 40px;
+
+}
+
+.testimonial-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.testimonial-slide {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.testimonial-slide.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+.testimonial-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #d4af37;
+    transform: scale(1.2);
 }
 
 .nav-dot {
@@ -110,7 +156,6 @@ header{
     background: #ddd;
     cursor: pointer;
     transition: all 0.3s;
-    margin-bottom: 25px;
 }
 
 .nav-dot.active {
