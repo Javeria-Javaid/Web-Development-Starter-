@@ -62,9 +62,40 @@ header{
 }
 
 
+.testimonial-section{
+    display: grid;
+    justify-content: center;
 
 
+}
 
+.testimonial-section h1{
+    text-align: center;
+    color:  #d4af37;
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+
+    position: relative; /* ← Essential for absolute positioning of :after */
+    display: inline-block; /* ← Makes underline match text width */
+    margin-bottom: 25px; /* ← Space for the line */
+    width: 100%; /* ← Ensures parent width */
+
+
+}
+.testimonial-section h1:after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the line */
+    width: 80px; /* Custom width */
+    height: 2px;
+    background: #d4af37;
+}
+
+.testimonial-card h2, p{
+    text-align: center;
+}
 
 
 
