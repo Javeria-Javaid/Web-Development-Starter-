@@ -123,7 +123,7 @@ section{
 }
 
 .contact-form {
-    background: #f9f9f9;
+   // background: #f9f9f9;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -131,7 +131,7 @@ section{
 
 .contact-form h2 {
     font-family: 'Playfair Display', serif;
-    color: var(--dark-bg);
+    color: var(--gold);
     margin-bottom: 30px;
     position: relative;
 }
@@ -159,7 +159,7 @@ section{
 .form-group input,
 .form-group textarea,
 .form-group select {
-    width: 100%;
+    width: 50%;
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
