@@ -69,20 +69,123 @@ section{
     gap: 40px;
     max-width: 1000px;
     margin: 0 auto;
-    background: white;
+   // background: white;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .contact-card{
-    background-color: white;
+  //  background-color: white;
     width: 85%;
     padding: 20px;
     border-left: 3px solid var(--gold);
 
 }
 
+.contact-card h2 {
+    font-family: 'Playfair Display', serif;
+    color: #cccccc;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    position: relative;
+}
+
+.contact-card h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 110px;
+    width: 40px;
+    height: 2px;
+    background:  #d4af37;
+}
+
+.contact-card p, .contact-card a {
+    color: #cccccc;
+    line-height: 1.8;
+    margin: 10px 0;
+    display: block;
+    text-decoration: none;
+}
+
+.contact-card a:hover {
+    color:  #d4af37;
+}
+.contact-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+}
+
+.contact-form {
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.contact-form h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--dark-bg);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.contact-form h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--gold);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: var(--gold);
+    color: var(--dark-bg);
+    border: none;
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #c9a227;
+    transform: translateY(-2px);
+}
 
 
 

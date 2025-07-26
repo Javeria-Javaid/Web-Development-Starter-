@@ -23,6 +23,7 @@
         </ul>
     </div>
 </header>
+
 <section>
     <h1>Contact Us</h1>
     <div class="contact-grid">
@@ -48,6 +49,40 @@
         </div>
 
     </div>
+    <div class="contact-container">
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone (Optional)</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject">
+                        <option value="general">General Inquiry</option>
+                        <option value="custom">Custom Jewelry</option>
+                        <option value="repair">Repair Services</option>
+                        <option value="wholesale">Wholesale Inquiry</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+
+
 </section>
 
 
