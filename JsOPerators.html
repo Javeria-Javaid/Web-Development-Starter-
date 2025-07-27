@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Result Checker</title>
+</head>
+<body>
+<script>
+    let age = 32;
+    let marks = [35, 37, 42, 54, 39];
+    let allSubjectsPass = true;
+
+    // Check all subjects
+    for(let i = 0; i < marks.length; i++) {
+        if(marks[i] < 33) {
+            allSubjectsPass = false;
+            break;
+        }
+    }
+
+    // Determine result
+    if(age > 30 && allSubjectsPass) {
+        document.write("<h2>Congratulations! You have passed</h2>");
+    } else {
+        document.write("<h2>Sorry! You failed</h2>");
+
+        if(age <= 30) {
+            document.write("<p>Reason: Your age is less than criteria (30+)</p>");
+        }
+        if(!allSubjectsPass) {
+            document.write("<p>Reason: Your marks are less than eligibility criteria (minimum 33 in each subject)</p>");
+        }
+    }
+</script>
+</body>
+</html>
