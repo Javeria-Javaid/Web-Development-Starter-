@@ -1,0 +1,20 @@
+body{
+    background-color: 	#faf0e6;
+    margin: 0;
+    padding: 0;
+    font-family: "Playfair Display";
+}
+.container{
+    width: 30%;
+    background-color: white;
+    margin: auto;
+    height: 400px;
+}
+form{
+    padding: 30px;
+    margin-top: 150px;
+}
+form input{
+    border: none;
+    border-bottom: 1px solid gray;
+}
