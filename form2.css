@@ -5,16 +5,36 @@ body{
     font-family: "Playfair Display";
 }
 .container{
-    width: 30%;
+    width: 20%;
     background-color: white;
     margin: auto;
-    height: 400px;
+    height: 500px;
 }
 form{
-    padding: 30px;
+    padding: 80px 50px 50px 50px;
     margin-top: 150px;
 }
+
 form input{
     border: none;
     border-bottom: 1px solid gray;
+    padding: 5px 40px 5px 5px;
+    margin-bottom: 15px;
+}
+.bottom-container{
+    padding-top: 50px;
+
+}
+.sign-in-btn{
+    padding-top: 20px;
+}
+.a0{
+    text-decoration: none;
+    font-size: 23px;
+}
+.bottom-container a{
+    color: #0a0a0a;
+}
+.a1{
+    padding-right: 42px;
 }
