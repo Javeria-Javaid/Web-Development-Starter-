@@ -157,9 +157,15 @@ section{
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select {
-    width: 50%;
+.form-group textarea{
+    width: 45%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+}
+.form-group select{
+    width: 48%;
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
