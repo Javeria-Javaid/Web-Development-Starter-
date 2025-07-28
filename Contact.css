@@ -140,7 +140,7 @@ section{
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 0;
+    left: 530px;
     width: 50px;
     height: 2px;
     background: var(--gold);
