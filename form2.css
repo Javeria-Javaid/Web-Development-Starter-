@@ -16,8 +16,12 @@ body{
 }
 form{
     padding: 0 0 0 50px;
+    margin-top: -50px;
 }
+.welcome{
+    color: white;
 
+}
 form input{
     border: none;
     border-bottom: 1px solid gray;
