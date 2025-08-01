@@ -61,8 +61,7 @@ form input{
 
 .pink {
     background-color: #f8b8b8;
-    //clip-path: ellipse(27% 33% at 20% 21%);
-clip-path:ellipse(77% 42% at -17% 0%);
+    clip-path:ellipse(38% 43% at 5% 1%);
     position: absolute;
     width: 100%;
     height: 100%;
