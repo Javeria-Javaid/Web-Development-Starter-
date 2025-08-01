@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javeria • Portfolio</title>
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            color: #222;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #eee;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        #theme-toggle {
+            background: none;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            color: inherit;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .primary {
+            background: #6c63ff;
+            color: white;
+        }
+
+        .primary:hover {
+            background: #574bdb;
+        }
+
+        .secondary {
+            border: 2px solid #6c63ff;
+            color: #6c63ff;
+        }
+
+        .secondary:hover {
+            background: #6c63ff;
+            color: white;
+        }
+
+        /* Skills */
+        .skills {
+            padding: 40px 0;
+        }
+
+        .skills h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            text-align: center;
+        }
+
+        .skills-grid span {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        body.dark .skills-grid span {
+            background: #1e1e1e;
+        }
+
+        /* Projects */
+        .projects {
+            padding: 40px 0;
+        }
+
+        .projects h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .project-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        .project-card h4 {
+            margin-bottom: 10px;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #6c63ff;
+            text-decoration: none;
+        }
+
+        body.dark .project-card {
+            background: #1e1e1e;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 40px 0;
+        }
+
+        .contact h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input,
+        form textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background: #fff;
+            color: #222;
+        }
+
+        body.dark form input,
+        body.dark form textarea {
+            background: #1e1e1e;
+            color: #eee;
+            border: 1px solid #333;
+        }
+
+        form button {
+            padding: 12px;
+            background: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        form button:hover {
+            background: #574bdb;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Javeria's Portfolio</h1>
+        <button id="theme-toggle">🌙</button>
+    </header>
+
+    <section class="hero">
+        <h2>Hey, I'm Javeria</h2>
+        <p>A passionate front-end developer crafting beautiful web interfaces.</p>
+        <div class="hero-buttons">
+            <a href="#projects" class="btn primary">View Projects</a>
+            <a href="#contact" class="btn secondary">Contact Me</a>
+        </div>
+    </section>
+
+    <section class="skills">
+        <h3>Tools I Use</h3>
+        <div class="skills-grid">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>GitHub</span>
+            <span>Figma</span>
+           <!--
+            <span>MongoDB</span>
+            -->
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <h3>Selected Projects</h3>
+        <div class="project-card">
+            <h4>Portfolio Website</h4>
+            <p>Built using HTML, CSS, and JavaScript to showcase my work.</p>
+            <a href="#">View →</a>
+        </div>
+        <div class="project-card">
+            <h4>Luxury Jewelry Store</h4>
+            <p>An elegant online shop for handcrafted jewelry collections with product customization options.</p>
+            <a href="#">View →</a>
+        </div>
+        <div class="project-card">
+            <h4>Daily Planner App</h4>
+            <p>A productivity application with task management, calendar integration, and progress tracking.</p>
+            <a href="#">View →</a>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h3>Contact Me</h3>
+        <form>
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Email" required />
+            <textarea rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send →</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2025 Javeria</p>
+    </footer>
+</div>
+
+<script>
+    const toggle = document.getElementById("theme-toggle");
+    toggle.onclick = () => {
+        document.body.classList.toggle("dark");
+        // Change the icon based on current theme
+        if (document.body.classList.contains("dark")) {
+            toggle.textContent = "☀️";
+        } else {
+            toggle.textContent = "🌙";
+        }
+    };
+</script>
+</body>
+</html>
