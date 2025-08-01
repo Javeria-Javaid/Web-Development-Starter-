@@ -45,3 +45,35 @@ form input{
 .a1{
     padding-right: 42px;
 }
+.main-colors {
+    position: relative;
+    width: 320px;
+    height: 260px;
+}
+
+.pink {
+    background-color: #f8b8b8;
+    clip-path: polygon(0 0, 100% 0, 80% 10%, 60% 15%, 0 25%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.purple {
+    background-color: #8c4387;
+    clip-path: polygon(0 20%, 100% 0%, 100% 80%, 80% 90%, 60% 100%, 0 90%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.yellow {
+    background-color: #e7d558;
+    clip-path: polygon(100% 0, 100% 100%, 85% 90%, 90% 50%, 95% 20%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
