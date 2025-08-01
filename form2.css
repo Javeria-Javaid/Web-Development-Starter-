@@ -16,11 +16,10 @@ body{
 }
 form{
     padding: 0 0 0 50px;
-    margin-top: -50px;
 }
 .welcome{
     color: white;
-
+    z-index: 4;
 }
 form input{
     border: none;
@@ -54,7 +53,7 @@ form input{
 
 .pink {
     background-color: #f8b8b8;
-    clip-path: ellipse(35% 45% at 25% 15%);
+    clip-path: ellipse(27% 33% at 20% 21%);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -63,7 +62,7 @@ form input{
 
 .purple {
     background-color: #8c4387;
-    clip-path: ellipse(72% 44% at 46% 53%);
+    clip-path: ellipse(40% 50% at 40% 45%);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -72,7 +71,7 @@ form input{
 
 .yellow {
     background-color: #e7d558;
-    clip-path: ellipse(33% 33% at 86% 15%);
+    clip-path: ellipse(25% 40% at 77% 15%);
     position: absolute;
     width: 100%;
     height: 100%;
