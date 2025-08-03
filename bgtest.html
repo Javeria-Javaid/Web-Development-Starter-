@@ -2,25 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Menu Bar</title>
-    <link rel="stylesheet" href="MenuBar.css">
+    <title>Brushed Silver Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background:
+                /* Brushed metal lines */
+                    repeating-linear-gradient(
+                            135deg,
+                            rgba(255, 255, 255, 0.04) 0px,
+                            rgba(255, 255, 255, 0.04) 1px,
+                            transparent 1px,
+                            transparent 3px
+                    ),
+                        /* Subtle radial light glow */
+                    radial-gradient(
+                            circle at 40% 40%,
+                            rgba(255, 255, 255, 0.1),
+                            rgba(60, 65, 72, 1) 70%
+                    ),
+                        /* Base silver-gray color */
+                    #3c4148;
+
+            background-blend-mode: soft-light;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <ul class="menu">
-        <li><a>Home</a></li>
-        <li><a>Portfolio</a></li>
-        <li class="Services">
-            <a>Services ▼</a>
-            <ul class="dropdown">
-                <li><a>Web Development</a></li>
-                <li><a>Web Designer</a></li>
-                <li><a>Content Writer</a></li>
-            </ul>
-        </li>
-        <li><a>About</a></li>
-        <li><a>Contact Us</a></li>
-    </ul>
-    <div class="metal-bg"></div></div>
 </body>
 </html>
