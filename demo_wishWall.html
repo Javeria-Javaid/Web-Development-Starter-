@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Wish Wall for Pakistan — 14th August</title>
+  <meta name="description" content="Share your wish for Pakistan on Independence Day. A live, interactive wish wall." />
+  <style>
+    :root{
+      --green:#0a7d44; /* deep flag green */
+      --green-2:#0f9d58; /* lighter accent */
+      --white:#f7fafc;
+      --gold:#caa54f;
+      --dark:#0b1b14;
+      --card:#0f2a1eaa;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Calibri", "Cantarell", "Ubuntu", sans-serif;
+      color:var(--white);
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,.15), transparent 60%),
+      radial-gradient(1000px 600px at 120% 10%, rgba(255,255,255,.08), transparent 55%),
+      linear-gradient(135deg, #08351f, #0e5f36 55%, #0b3e25 100%);
+      overflow-x:hidden;
+    }
+    /* Subtle flag stripe overlay */
+    .flag-stripes::before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;
+      background: repeating-linear-gradient(135deg, #ffffff, #ffffff 10px, transparent 10px, transparent 20px);
+    }
+
+    header{
+      position:sticky;top:0;z-index:10;backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(10,32,22,.85), rgba(10,32,22,.55));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .container{max-width:1100px;margin:0 auto;padding:16px}
+    .topbar{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .flag{width:36px;height:24px;border:2px solid #fff;border-radius:3px;box-shadow:var(--shadow);background:
+            linear-gradient(90deg, var(--green) 70%, #fff 70% 100%);
+      position:relative;overflow:hidden
+    }
+    .flag::after{content:"★";position:absolute;left:6px;top:50%;transform:translateY(-50%);color:#fff;font-size:16px;text-shadow:0 0 6px rgba(0,0,0,.4)}
+    .brand h1{font-size:20px;margin:0;letter-spacing:.3px}
+
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    button, .btn{
+      cursor:pointer;border:none;border-radius:14px;padding:10px 14px;font-weight:600;
+      background:linear-gradient(180deg, #1aa05a, #168e50);color:white;box-shadow:var(--shadow);
+      transition: transform .08s ease, box-shadow .2s ease; text-decoration:none
+    }
+    button.secondary{background:linear-gradient(180deg, #174a31, #123a27)}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,.2)}
+    button:hover{transform:translateY(-1px)}
+
+    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center;padding:18px 0}
+    .title{font-size: clamp(28px, 6vw, 48px);margin:6px 0 10px;font-weight:900;line-height:1.05}
+    .subtitle{opacity:.9;margin:0 0 12px}
+
+    .meta{
+      display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px
+    }
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
+
+    .card{
+      background:linear-gradient(180deg, rgba(15,37,28,.85), rgba(13,32,24,.85));
+      border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px;box-shadow:var(--shadow)
+    }
+
+    form#wishForm {display:grid;gap:10px}
+    textarea, input[type="text"]{
+      width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.15);
+      background:rgba(0,0,0,.25);color:#fff;outline:none;min-height:46px
+    }
+    textarea{min-height:96px;resize:vertical}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .row > *{flex:1 1 180px}
+
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+    select{
+      background:rgba(0,0,0,.25);color:#fff;border:1px solid rgba(255,255,255,.15);
+      padding:10px 12px;border-radius:12px;min-width:140px
+    }
+    .search{flex:1 1 220px}
+
+    /* Wall */
+    .wall{position:relative;min-height:40vh;margin:20px 0 80px}
+    .grid{
+      display:grid;gap:12px;grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+    }
+    .wish{
+      position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.12);
+      background: radial-gradient(800px 300px at -10% -20%, rgba(255,255,255,.12), transparent 35%),
+      linear-gradient(180deg, rgba(41,92,66,.9), rgba(21,58,41,.9));
+      padding:14px;box-shadow:var(--shadow);animation: floatUp linear both; animation-duration: var(--dur, 18s);
+    }
+    .wish .text{white-space:pre-wrap}
+    .wish .metaRow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;font-size:12px;opacity:.9}
+
+    .heart{cursor:pointer;user-select:none}
+    .heart[aria-pressed="true"]{filter: drop-shadow(0 0 6px #e84343)}
+
+    @keyframes floatUp{from{transform:translateY(40px);opacity:0} 20%{opacity:1} to{transform:translateY(-6px);opacity:1}}
+
+    /* Fireworks canvas */
+    #fx{position:fixed;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.8}
+
+    footer{position:sticky;bottom:0;background: linear-gradient(0deg, rgba(10,32,22,.85), rgba(10,32,22,.55));border-top:1px solid rgba(255,255,255,.08)}
+    .footer-wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 16px}
+
+    .countdown{font-variant-numeric:tabular-nums}
+
+    .empty{opacity:.8;text-align:center;padding:30px}
+
+    /* Small screens */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body class="flag-stripes">
+<canvas id="fx"></canvas>
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <div class="flag" aria-hidden="true"></div>
+      <h1>Digital Wish Wall for Pakistan</h1>
+    </div>
+    <div class="actions">
+      <button class="ghost" id="btnMute" aria-pressed="true" title="Toggle anthem">🔈 Sound</button>
+      <button class="secondary" id="btnCelebrate" title="Celebrate now">🎆 Celebrate</button>
+      <a class="btn" id="btnShare">📤 Share</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <h2 class="title">اپنی دعا، اپنا خواب — 14 اگست کے نام</h2>
+      <p class="subtitle">Write your wish for Pakistan’s future and pin it to a living wall of hopes from across the country and the world.</p>
+      <div class="meta">
+        <span class="pill">💚 Built for Independence Day</span>
+        <span class="pill" id="wishCount">📝 0 wishes</span>
+        <span class="pill" id="loveCount">❤️ 0 hearts</span>
+      </div>
+    </div>
+    <aside class="card">
+      <form id="wishForm" autocomplete="off">
+        <label>
+          <strong>Your Name (optional)</strong>
+          <input id="name" type="text" maxlength="40" placeholder="e.g., Ayesha / Ali / Anonymous" />
+        </label>
+        <label>
+          <strong>Your Wish</strong>
+          <textarea id="wish" maxlength="240" placeholder="Write from the heart… (max 240 characters)"></textarea>
+        </label>
+        <div class="row">
+          <label>
+            <strong>Language</strong>
+            <select id="lang">
+              <option value="auto">Auto-detect</option>
+              <option value="ur">Urdu</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+          <label>
+            <strong>City (optional)</strong>
+            <input id="city" type="text" maxlength="40" placeholder="Lahore, Karachi, Islamabad…" />
+          </label>
+        </div>
+        <div class="row">
+          <button type="submit">➕ Add Wish</button>
+          <button type="button" class="secondary" id="btnClear">🧹 Clear All (local)</button>
+        </div>
+        <small style="opacity:.8">Wishes are saved locally in your browser in this prototype. Connect a database (e.g., Firebase/Supabase) for live, multi-user updates.</small>
+      </form>
+    </aside>
+  </section>
+
+  <section class="controls">
+    <select id="filterLang" title="Filter by language">
+      <option value="all">All languages</option>
+      <option value="ur">Urdu</option>
+      <option value="en">English</option>
+    </select>
+    <select id="sortBy" title="Sort wishes">
+      <option value="latest">Latest</option>
+      <option value="hearts">Most loved</option>
+    </select>
+    <input id="search" class="search" type="text" placeholder="Search wishes…" />
+  </section>
+
+  <section class="wall card">
+    <div id="grid" class="grid" role="list"></div>
+    <div id="empty" class="empty">No wishes yet. Be the first to add one! 💫</div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-wrap container">
+    <div>© <span id="yr"></span> Wish Wall • Made with 💚 in Pakistan</div>
+    <div class="countdown" id="countdown">14 August countdown: --:--:--</div>
+  </div>
+</footer>
+
+<audio id="anthem" loop>
+  <source src="https://upload.wikimedia.org/wikipedia/commons/5/5e/National_anthem_of_Pakistan_instrumental.ogg" type="audio/ogg">
+</audio>
+
+<script>
+  // ===== Utilities =====
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+  const storeKey = 'pk-wishes-v1';
+  const heartKey = id => `pk-heart-${id}`;
+
+  const random = (min, max) => Math.random() * (max - min) + min;
+  const isUrduGuess = (txt) => /[\u0600-\u06FF]/.test(txt);
+
+  const fmtTime = (ms) => {
+    const t = Math.max(0, Math.floor(ms/1000));
+    const h = String(Math.floor(t/3600)).padStart(2,'0');
+    const m = String(Math.floor((t%3600)/60)).padStart(2,'0');
+    const s = String(t%60).padStart(2,'0');
+    return `${h}:${m}:${s}`;
+  };
+
+  // ===== Data =====
+  const loadWishes = () => {
+    try { return JSON.parse(localStorage.getItem(storeKey)) || []; } catch { return []; }
+  };
+  const saveWishes = (arr) => localStorage.setItem(storeKey, JSON.stringify(arr));
+
+  let wishes = loadWishes();
+
+  // Seed a few demo wishes on first run
+  if (!localStorage.getItem('pk-seeded')){
+    const seed = [
+      { id: crypto.randomUUID(), name:'Ayesha', city:'Lahore', lang:'ur', text:'پاکستان ہمیشہ ترقّی کرے اور ہمارا تعلیمی نظام مضبوط ہو۔', hearts: 7, ts: Date.now()-3600_000 },
+      { id: crypto.randomUUID(), name:'Ali', city:'Karachi', lang:'en', text:'May Pakistan thrive in unity, justice, and knowledge for all.', hearts: 10, ts: Date.now()-7200_000 },
+      { id: crypto.randomUUID(), name:'Zeeshan', city:'Islamabad', lang:'en', text:'A greener, cleaner Pakistan with opportunities for every child.', hearts: 5, ts: Date.now()-5400_000 }
+    ];
+    wishes = [...seed, ...wishes];
+    saveWishes(wishes);
+    localStorage.setItem('pk-seeded','1');
+  }
+
+  // ===== Fireworks =====
+  const fx = document.getElementById('fx');
+  const ctx = fx.getContext('2d');
+  let W=innerWidth,H=innerHeight;
+  const resize=()=>{ W=innerWidth; H=innerHeight; fx.width=W; fx.height=H; };
+  addEventListener('resize', resize); resize();
+
+  const particles=[];
+  function boom(x,y){
+    for(let i=0;i<80;i++){
+      particles.push({
+        x, y, vx: Math.cos(i)*random(-2,2) + (Math.random()-.5)*3, vy: Math.sin(i)*random(-2,2) + (Math.random()-.5)*3,
+        life: random(40,90), age:0, size: random(1.2,2.8),
+        hue: random(110,140) // greenish
+      });
+    }
+  }
+  (function animate(){
+    requestAnimationFrame(animate);
+    ctx.clearRect(0,0,W,H);
+    for(let p of particles){
+      p.age++; if(p.age>p.life) continue;
+      p.vy += .02; // gravity
+      p.x += p.vx; p.y += p.vy;
+      const alpha = 1 - p.age/p.life;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fillStyle = `hsla(${p.hue}, 80%, 60%, ${alpha})`;
+      ctx.fill();
+    }
+    for(let i=particles.length-1;i>=0;i--){ if(particles[i].age>particles[i].life) particles.splice(i,1); }
+  })();
+
+  // Celebrate button
+  $('#btnCelebrate').addEventListener('click',()=>{
+    boom(random(W*.2,W*.8), random(H*.2,H*.6));
+  });
+
+  // Trigger fireworks at midnight of Aug 14
+  function scheduleMidnightFireworks(){
+    const now = new Date();
+    const year = now.getFullYear();
+    const target = new Date(`${year}-08-14T00:00:00`);
+    const ms = target - now;
+    if(ms>0 && ms < 1000*60*60*24){
+      setTimeout(()=>{ for(let i=0;i<5;i++){ setTimeout(()=>boom(W/2, H*.35), i*600); } }, ms);
+    }
+  }
+  scheduleMidnightFireworks();
+
+  // ===== Anthem audio =====
+  const anthem = document.getElementById('anthem');
+  let soundOn = true;
+  document.getElementById('btnMute').addEventListener('click', async ()=>{
+    soundOn = !soundOn;
+    $('#btnMute').setAttribute('aria-pressed', soundOn);
+    $('#btnMute').textContent = soundOn ? '🔈 Sound' : '🔇 Muted';
+    try{
+      if(soundOn){ await anthem.play(); } else { anthem.pause(); }
+    }catch(e){ /* autoplay might be blocked until user gesture */ }
+  });
+  // try play after first click anywhere
+  addEventListener('pointerdown', ()=>{ if(soundOn) anthem.play().catch(()=>{}); }, {once:true});
+
+  // ===== Render =====
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+
+  const state = { filter:'all', sort:'latest', q:'' };
+
+  function render(){
+    const list = wishes.filter(w=>{
+      if(state.filter!=='all' && w.lang!==state.filter) return false;
+      if(state.q){
+        const s = (w.text + ' ' + (w.name||'') + ' ' + (w.city||'')).toLowerCase();
+        if(!s.includes(state.q)) return false;
+      }
+      return true;
+    }).sort((a,b)=> state.sort==='latest' ? b.ts - a.ts : b.hearts - a.hearts);
+
+    grid.innerHTML = '';
+    let totalHearts = 0;
+    list.forEach((w,idx)=>{
+      totalHearts += w.hearts||0;
+      const card = document.createElement('article');
+      card.className='wish';
+      card.style.setProperty('--dur', (16 + (idx%8)) + 's');
+      card.setAttribute('role','listitem');
+      card.dir = w.lang==='ur' ? 'rtl' : 'ltr';
+
+      const text = document.createElement('div');
+      text.className='text';
+      text.textContent = w.text;
+
+      const meta = document.createElement('div');
+      meta.className='metaRow';
+      const left = document.createElement('div');
+      left.textContent = `${w.name||'Anonymous'}${w.city? ' • ' + w.city: ''}`;
+
+      const right = document.createElement('div');
+      const heart = document.createElement('button');
+      heart.className='heart';
+      heart.setAttribute('aria-label','Heart this wish');
+      const liked = localStorage.getItem(heartKey(w.id))==='1';
+      heart.setAttribute('aria-pressed', liked);
+      heart.textContent = `❤️ ${w.hearts||0}`;
+      heart.addEventListener('click',()=>{
+        const already = localStorage.getItem(heartKey(w.id))==='1';
+        if(already){
+          // allow un-heart locally but do not decrement global count below 0
+          w.hearts = Math.max(0, (w.hearts||0)-1);
+          localStorage.removeItem(heartKey(w.id));
+          heart.setAttribute('aria-pressed','false');
+        }else{
+          w.hearts = (w.hearts||0)+1;
+          localStorage.setItem(heartKey(w.id),'1');
+          heart.setAttribute('aria-pressed','true');
+          boom(random(80,W-80), random(80,H/2));
+        }
+        heart.textContent = `❤️ ${w.hearts}`;
+        saveWishes(wishes);
+        updateCounts();
+      });
+
+      const share = document.createElement('button');
+      share.className='ghost';
+      share.textContent='📤';
+      share.title='Share this wish';
+      share.addEventListener('click', async ()=>{
+        const txt = `Wish for Pakistan by ${w.name||'Anonymous'}${w.city? ' from '+w.city: ''}: "${w.text}"`;
+        if(navigator.share){
+          try{ await navigator.share({title:'Wish Wall — Pakistan', text: txt, url: location.href}); }catch{}
+        } else {
+          await navigator.clipboard.writeText(`${txt}\n${location.href}`);
+          alert('Copied to clipboard!');
+        }
+      });
+
+      right.appendChild(heart); right.appendChild(share);
+      meta.appendChild(left); meta.appendChild(right);
+
+      card.appendChild(text); card.appendChild(meta);
+      grid.appendChild(card);
+    });
+
+    empty.style.display = list.length? 'none':'block';
+    updateCounts();
+  }
+
+  function updateCounts(){
+    const total = wishes.length;
+    const hearts = wishes.reduce((a,b)=>a+(b.hearts||0),0);
+    document.getElementById('wishCount').textContent = `📝 ${total} wishes`;
+    document.getElementById('loveCount').textContent = `❤️ ${hearts} hearts`;
+  }
+
+  // ===== Form =====
+  document.getElementById('wishForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = $('#name').value.trim();
+    const text = $('#wish').value.trim();
+    const city = $('#city').value.trim();
+    let lang = $('#lang').value;
+    if(!text){ $('#wish').focus(); return; }
+    if(lang==='auto') lang = isUrduGuess(text) ? 'ur' : 'en';
+
+    const item = { id: crypto.randomUUID(), name:name||undefined, city: city||undefined, lang, text, hearts:0, ts: Date.now() };
+    wishes.unshift(item);
+    saveWishes(wishes);
+    $('#wish').value='';
+    render();
+    boom(random(120,W-120), random(100,H*.5));
+  });
+
+  document.getElementById('btnClear').addEventListener('click',()=>{
+    if(confirm('This will clear wishes stored locally in this browser for this prototype. Proceed?')){
+      localStorage.removeItem(storeKey);
+      wishes = [];
+      render();
+    }
+  });
+
+  // ===== Filters & search =====
+  $('#filterLang').addEventListener('change', e=>{ state.filter=e.target.value; render(); });
+  $('#sortBy').addEventListener('change', e=>{ state.sort=e.target.value; render(); });
+  $('#search').addEventListener('input', e=>{ state.q=e.target.value.toLowerCase(); render(); });
+
+  // ===== Countdown to 14 August =====
+  const countdownEl = document.getElementById('countdown');
+  function tick(){
+    const now = new Date();
+    const year = now.getFullYear();
+    const target = new Date(`${year}-08-14T00:00:00`);
+    const nextYearTarget = new Date(`${year+1}-08-14T00:00:00`);
+    const diff = (now <= target) ? (target - now) : (nextYearTarget - now);
+    countdownEl.textContent = `14 August countdown: ${fmtTime(diff)}`;
+  }
+  setInterval(tick, 1000); tick();
+
+  // ===== Share page =====
+  document.getElementById('btnShare').addEventListener('click', async ()=>{
+    const text = 'Add your wish for Pakistan on this digital wall 🇵🇰';
+    if(navigator.share){
+      try{ await navigator.share({title:'Wish Wall — Pakistan', text, url: location.href}); }catch{}
+    } else {
+      await navigator.clipboard.writeText(location.href);
+      alert('Link copied!');
+    }
+  });
+
+  // Footer year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Initial render
+  render();
+</script>
+</body>
+</html>
