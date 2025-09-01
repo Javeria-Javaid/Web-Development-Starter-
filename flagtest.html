@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Hoisting</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(to top, #87ceeb, #ffffff);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        .scene {
+            position: relative;
+            height: 90vh;
+            width: 200px;
+        }
+
+        .pole {
+            position: absolute;
+            bottom: 0;
+            left: 90px;
+            width: 20px;
+            height: 100%;
+            background: #555;
+        }
+
+        .flag {
+            position: absolute;
+            left: 110px;
+            bottom: 0;
+            width: 260px;
+            animation: wave 2s infinite ease-in-out;
+            transform-origin: left center;
+        }
+
+        @keyframes wave {
+            0%   { transform: rotateZ(0deg) }
+            50%  { transform: rotateZ(2deg) }
+            100% { transform: rotateZ(0deg) }
+        }
+
+        .button-container {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: green;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="scene">
+    <div class="pole"></div>
+    <img src="world.png"
+         alt="Flag" class="flag" id="flag">
+    <div class="button-container">
+        <button id="hoistBtn">Hoist the Flag</button>
+    </div>
+</div>
+
+<audio id="anthem" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Pakistan_Anthem.ogg"></audio>
+
+<script>
+    const btn = document.getElementById('hoistBtn');
+    const flag = document.getElementById('flag');
+    const anthem = document.getElementById('anthem');
+
+    btn.addEventListener('click', () => {
+        anthem.play();
+        flag.style.transition = "bottom 5s linear";
+        flag.style.bottom = "calc(100% - 80px)"; // move flag to top
+        btn.disabled = true;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 120px);
+      grid-template-rows: repeat(3, 120px);
+      gap: 8px;
+    }
+    .cell {
+      background: #fff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3em;
+      font-weight: bold;
+      color: #444;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .cell:hover {
+      background: #e0f7fa;
+      transform: scale(1.05);
+    }
+    .winner {
+      background: #a5d6a7 !important;
+      color: #1b5e20;
+    }
+    .status {
+      margin: 15px 0;
+      font-size: 1.2em;
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #42a5f5;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #1e88e5;
+    }
+  </style>
+</head>
+<body>
+<h1>Tic Tac Toe</h1>
+<div class="status">Player X's turn</div>
+<div class="board">
+  <div class="cell" data-index="0"></div>
+  <div class="cell" data-index="1"></div>
+  <div class="cell" data-index="2"></div>
+  <div class="cell" data-index="3"></div>
+  <div class="cell" data-index="4"></div>
+  <div class="cell" data-index="5"></div>
+  <div class="cell" data-index="6"></div>
+  <div class="cell" data-index="7"></div>
+  <div class="cell" data-index="8"></div>
+</div>
+<button id="resetBtn">Restart Game</button>
+
+<script>
+  const cells = document.querySelectorAll(".cell");
+  const statusText = document.querySelector(".status");
+  const resetBtn = document.getElementById("resetBtn");
+
+  let board = ["", "", "", "", "", "", "", "", ""];
+  let currentPlayer = "X";
+  let running = true;
+
+  const winPatterns = [
+    [0,1,2], [3,4,5], [6,7,8], // rows
+    [0,3,6], [1,4,7], [2,5,8], // columns
+    [0,4,8], [2,4,6]           // diagonals
+  ];
+
+  function initializeGame() {
+    cells.forEach(cell => cell.addEventListener("click", cellClicked));
+    resetBtn.addEventListener("click", resetGame);
+    statusText.textContent = `Player ${currentPlayer}'s turn`;
+  }
+
+  function cellClicked() {
+    const index = this.getAttribute("data-index");
+
+    if(board[index] !== "" || !running) {
+      return;
+    }
+
+    updateCell(this, index);
+    checkWinner();
+  }
+
+  function updateCell(cell, index) {
+    board[index] = currentPlayer;
+    cell.textContent = currentPlayer;
+  }
+
+  function changePlayer() {
+    currentPlayer = (currentPlayer === "X") ? "O" : "X";
+    statusText.textContent = `Player ${currentPlayer}'s turn`;
+  }
+
+  function checkWinner() {
+    let roundWon = false;
+
+    for(let i = 0; i < winPatterns.length; i++) {
+      const [a, b, c] = winPatterns[i];
+      if(board[a] && board[a] === board[b] && board[a] === board[c]) {
+        roundWon = true;
+        highlightCells(a, b, c);
+        break;
+      }
+    }
+
+    if(roundWon) {
+      statusText.textContent = `Player ${currentPlayer} wins! 🎉`;
+      running = false;
+    } else if(!board.includes("")) {
+      statusText.textContent = "It's a draw! 🤝";
+      running = false;
+    } else {
+      changePlayer();
+    }
+  }
+
+  function highlightCells(a, b, c) {
+    cells[a].classList.add("winner");
+    cells[b].classList.add("winner");
+    cells[c].classList.add("winner");
+  }
+
+  function resetGame() {
+    currentPlayer = "X";
+    board = ["", "", "", "", "", "", "", "", ""];
+    running = true;
+    statusText.textContent = `Player ${currentPlayer}'s turn`;
+    cells.forEach(cell => {
+      cell.textContent = "";
+      cell.classList.remove("winner");
+    });
+  }
+
+  initializeGame();
+</script>
+</body>
+</html>
